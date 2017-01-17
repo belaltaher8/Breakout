@@ -1,0 +1,54 @@
+-One variant of breakout that you thought was interesting: I thought
+	the circus variant of the game was interesting because,
+	as someone who has been playing games for a while, the fact
+	that the paddle is now a seesaw seems to be the most 
+	game-changing version of the original breakout game. I feel
+	this way because it causes the player to consider angles
+	in a way that no other breakout game requires. This inspired 
+	my version of the breakout game which will include a rotating
+	paddle. Having a paddle that doesn't stay still adds a 
+	whole new aspect of challenge and gameplay, which makes it 
+	more interesting to play and code.
+
+-General description of levels: The levels will all be structured
+	similarly. They will all contain a bunch of blocks at the top
+	of the screen with the paddle at the bottom. The second level and
+	third level, however, will cause the ball to move differently
+	depending on where it hits the side walls. For example, a large
+	section of the third level's side walls will cause the ball to
+	speed up a lot, which will make the game harder. Meanwhile, 
+	small sections of the side wall will slow the ball down. 
+	Besides the side walls changing, there won't be much change
+	between the levels besides what actual blocks are in the 
+	conglomerate at the top of the screen. 
+
+-Different kinds of blocks: 
+	-One block will cover the ball with a "goo" that will 
+			make it immediately fall straight down 
+			(loses all momentum)
+	-One block will explode, destroying all adjacent blocks
+	-One block will cause 3 more balls to spawn all going
+			in different directions
+	-One block will drop a random powerup
+	-One type of block for each power up
+	-One block will, if broken first, destroy all adjacent
+			blocks and all blocks adjacent to those originally
+			adjacent ones
+
+-Different power ups:
+	-Speed up will increase speed of ball
+	-Slow down will decrease speed of ball
+	-Fire will make ball instantly break the next block it hits
+	-Triple fire will make block break next 3 blocks 
+	-Star power will make block immune to border effects
+		*mentioned in general description of levels*
+
+-Different cheat keys:
+	-Cheat key for permanent star power
+	-Cheat key for permanent fire
+	-Cheat key that makes ball break into 3 whenever it hits a block
+
+-Extra: The game won't appear much differently than the regular
+	breakout game, but I believe that all the aspects of gameplay
+	I'm introducing will make it a challenging yet enjoyable 
+	take on the original breakout game.
