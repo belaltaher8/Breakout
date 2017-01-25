@@ -1,3 +1,5 @@
+
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Random;
@@ -29,6 +31,7 @@ public class BreakoutEdition extends Application{
     
     public static final String BALL_IMAGE = "ball.gif";
     public static final String PADDLE_IMAGE = "paddle.gif";
+
     
     public static final int SIZE = 400;
     public static final Paint BACKGROUND = Color.WHITE;
