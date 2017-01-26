@@ -64,8 +64,6 @@ public class BreakoutEdition extends Application{
     private boolean firePower = false;
     
     //Fields for "walls" 
-    
-    //Fields for "walls" 
     private Rectangle topSectionRight;
     private Rectangle middleSectionRight;
     private Rectangle bottomSectionRight; 
@@ -266,17 +264,17 @@ public class BreakoutEdition extends Application{
         	for(int cols = 0; cols < COLS; cols++){
         		blocks[row][cols].updateBrick(root);
         		if(blocks[row][cols].getHitsLeft() == 0){
-        			if(blocks[row][cols].getType() == 1){
+        			if(blocks[row][cols].getType() == 6){
         				bouncerSpeedX = 0;
         				bouncerSpeedY = maxBouncerSpeed;
         			}
-        			if(blocks[row][cols].getType() == 2 && maxBouncerSpeed < UPPER_LIMIT_BOUNCER_SPEED){
+        			if(blocks[row][cols].getType() == 7 && maxBouncerSpeed < UPPER_LIMIT_BOUNCER_SPEED){
         				maxBouncerSpeed=maxBouncerSpeed-50;
         			}
-        			if(blocks[row][cols].getType() == 3 && maxBouncerSpeed > LOWER_LIMIT_BOUNCER_SPEED){
+        			if(blocks[row][cols].getType() == 8 && maxBouncerSpeed > LOWER_LIMIT_BOUNCER_SPEED){
         				maxBouncerSpeed=maxBouncerSpeed+50;
         			}
-        			if(blocks[row][cols].getType() ==4){
+        			if(blocks[row][cols].getType() == 9){
         				firePower=true;
         			}
 

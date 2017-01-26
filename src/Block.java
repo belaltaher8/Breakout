@@ -20,8 +20,7 @@ public class Block{
     	
     	public Block(Group root, int xPosition, int yPosition, int width, int height, int aType){
     		hitsLeft = HITS_TO_BREAK;
-    		type= aType;
-    		
+    	  		
     		type = aType;
     		blockCollisionDetector = new Rectangle(xPosition, yPosition, width, height);
     		String typeOfBrick = "brick" + aType + ".gif";
@@ -39,7 +38,7 @@ public class Block{
     	}
     	
     	public void updateBrick(Group root){
-    		if(hitsLeft ==1){
+    		if(hitsLeft ==1 && type+5 <= 9){
     			type = type + 5;
     			root.getChildren().remove(brickImage);
     			double x = blockCollisionDetector.getX();
