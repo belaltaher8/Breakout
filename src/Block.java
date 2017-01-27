@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Block{
-    	
+    	// constant
     	public static final int HITS_TO_BREAK = 2; 	
     	
     	private Rectangle blockCollisionDetector;

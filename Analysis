@@ -1,0 +1,94 @@
+ANALYSIS:
+
+Project Journal:
+	Time review: I started this project a lot later than I should have because of poor time management. I wrote my first line of code Saturday afternoon and ended up staying up until 4 that day, and I worked from noon on Sunday to literally right before the deadline. I didn’t spend much time planning because I didn’t think about the best way to implement what I was doing while doing it. In the future, I will be sure to spend more time on this step. Because I didn’t plan my time out well, I was unable to take advantage of object-oriented coding. My final code ended up just being like a script in Python in which all the files and functionality is just in one class. I honestly spent most of my time coding new features for this project. Although debugging was tedious, most of the things that I was trying to do were things that I already knew how to go about. Especially since the step method was so easy to build off of. Once I understand the logic behind that, modifying it to work for my game was easy. My first attempt usually worked how I intended, and if it didn’t, I only had to work out a few bugs to make it do so. Because I approached this project so haphazardly, I didn’t manage my code very well at all. I only took breaks to check my code when I finished major functionality, such as the paddle moving, the ball bouncing, or blocks being spawned. Also, because I messed up my connection with my git repository, I wasn’t able to commit or push any of my files until after I finished the entire project. Designing the ball, paddle, and collision sensors were definitely the easiest part for me. It took me a while to think of a way to make the image view of the ball intersect with the rectangles that formed the walls and top, but once I realized that I could just make an invisible rectangle follow the ball around and act as a collision detector, the rest was easy. I’ve made a simple project in JavaFX before, so having image views move around the screen wasn’t that difficult, especially with the boiler-plate code. That honestly helped me a lot. I spent a lot of time in the beginning just reading through that to understand how it worked, and from there it wasn’t hard to edit it to work the way I wanted. The hardest part of the project for me was definitely the blocks. I really wanted to avoid using a double for loop because of the log(n^2) run-time efficiency, but I couldn’t think of any other way to do it. Also, the blocks had so much functionality that I ended up making a class in a class for them. This ended up taking most of my time, especially since there were so many characteristics (i.e. breaking after two hits, changing the image view when hit, moving the collision sensor for the block when the block was destroyed, e.t.c). I definitely think that reading through the boilerplate code to really understand what it was doing was the best use of my time because it familiarized me with the classes and methods I would need to use to design my intended functionality. I think a bad use of my time was the hour I spent trying to make the walls look nicer. I should have spent more of that time on the actual gameplay as opposed to just graphics.
+	Commits: As I said before, because I desynced my folder from the git repository and started this project so late, I only committed it after I finished. If, however, I did commit it at regular intervals like I should have, I would have committed whenever I finished a major aspect of the game (i.e. when the paddle worked, when the bouncer worked, when the blocks spawned, when the bouncer and block collisions worked) and given them appropriate commit messages such as “paddle is now working,” “blocks now spawn,” e.t.c. If I had done the project this way, I think the two most important commits I would have had would be the bouncer working and the blocks spawning. I wanted to include a rotating paddle, so it was difficult to make the ball function like it was supposed to because of all the angles I had to deal with. Getting this to work was definitely the first big landmark of my project because the paddle movement was basically already given in the boilerplate code. The blocks spawning were also a very significant landmark during the course of this project because after I got that to work, the rest of the project was just fine-tuning. The blocks spawning was the last functional aspect of the project I really struggled with, so when it finally worked was a huge relief. I think neither of these hypothetical changes, however, are reasonable for someone to review before allowing them into the repository because they both are huge landmarks with a lot different from the previous commit. Ideally, I would commit my project in smaller increments so each change would be easier to analyze.
+	Conclusions: Overall, I think I underestimated how long this project would take. A friend of mine said he was able to finish it in 10 hours, so I figured I could bang it out in one day. However, it took me much longer. I don’t think my sense of how long things will take is accurate yet, but this project has definitely shown me that I have to allocate more time and have that time spread over a longer period. Cramming never works as shown by the frustration I felt during this project. I definitely used way too many instance variables when coding this project originally because, like I said before, I approached it like a repeating Python script instead of taking advantage of object-oriented coding. Exchanging global fields such as bouncerXSpeed and bouncerYSpeed for a bouncer global field object was tedious because it required me to go through my entire code, but after completing this, I definitely feel like my code is more appropriate for an object-orientated language. To make sure I make better code in the future, I think I should spent more time laying out a plan and deciding what kinds of classes I want instead of just going head-first into coding. I think this will help me achieve my desired functionality faster and make debugging a whole lot easier since I would be able to isolate certain functionalities from others instead of having to scroll through egregiously long methods. If I could edit one thing about my project, I would change the way I did collisions. The way I did it required me to create a new object (an invisible rectangle that follows the image view it corresponds with and acts like a collision “detector”). I feel like there must be some API to do this more efficiently. It feels redundant to make both the image view and collision detector move together. I just didn’t feel like I had the time to really explore the image view API and find a means of doing so. 
+
+Design Review: 
+	Status: I feel like I was really good at appropriate naming things for this project. All the global fields/classes/variables were named such that they appropriately for the concepts they represent. I also indented my code appropriately so that its logic is very easy to follow. I think the code is easy to follow because of these two facts. It’s not hard to realize that updateBall() updates the position of the ball, that createPaddle() creates the paddle, bouncerSpeedX represents the bouncer’s speed in the x direction, and blocks[][] stores all the blocks for the current level. Until I refactored the code, the dependencies existed through “back channels” such as global variables and parameters. After refactoring, some still exist like that but adding a paddle, ball, and block class made the dependencies much clearer and easier to follow. 
+	First piece of code: 
+    private Scene setupGameLevelOne (int width, int height, Paint background) {
+        // create one top level collection to organize the things in the scene
+        root = new Group();
+        // create a place to see the shapes
+        myScene = new Scene(root, width, height, background);
+        
+        //creates bricks for level
+        createBlocksLevelOne();
+        
+        //creates ball
+        bouncer = new Bouncer(root, SIZE, SIZE);
+        
+        //creates paddle and sets color
+        paddle = new Paddle(root, SIZE, SIZE, PADDLE_WIDTH, PADDLE_LENGTH);
+        
+        //creates walls and sets color
+        createRightBordersLevelOne();
+        createLeftBordersLevelOne();
+        
+        //creates top
+        createTop();
+        
+        //adds the paddle, ball, and collision detector to the scene
+        addChildren(root);
+             
+        // respond to input
+        myScene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+        return myScene;
+    }
+I think this code is a good example of my code being easy to follow because all of the helper methods’ functions are very clearly outlined by their names. It’s obvious that the code first creates the blocks, then creates the bouncer, then the paddle, then the borders, e.t.c. This is technically the refactored version of my code, but before it simply had a private global field for bouncer, bouncerCollisionDetector, myPaddle, and myPaddleCollisionDetector. Although the dependencies were previously less clear, the code wasn’t that much harder to understand before I refactored it.
+
+	Second piece of code: 
+    	public void updateBrick(Group root){
+    		if(hitsLeft ==1 && type+5 <= 9){
+    			type = type + 5;
+    			root.getChildren().remove(brickImage);
+    			double x = blockCollisionDetector.getX();
+    			double y = blockCollisionDetector.getY();
+    			Image brick = new Image(getClass().getClassLoader().getResourceAsStream("brick" + type + ".gif"));
+                brickImage = new ImageView(brick);
+                brickImage.setX(x);
+                brickImage.setY(y);
+                root.getChildren().add(brickImage);
+    		}
+    		if(hitsLeft ==0){
+    			root.getChildren().remove(brickImage);
+    		}
+    	}
+The purpose of this code to the update a brick after its hitsLeft field has been updated to represent how many hits it has left before it disappears. I think this code is much harder to follow and is an example of poor coding practive. It’s not clear why I update the type by 5 or what exactly is going on in terms of updating the brick image. I think it would be better to create a brickHelper object or even a helperMethod that handles updating the brick’s image. I also think it would be better to use constants instead of arbitrarily adding 5 to the type (although 5 isn’t technically arbitrary because brick 5 is the damaged version of brick 0 and brick 6 is for brick 1, it seems like it is to anyone besides me). 
+	Design: Before I refactored this code, it was essentially a long script in python that continuously referred to the step method to see what to do next. It was a very sloppy and straightforward design that didn’t take very long to implement but is extremely inflexible and does not take advantage of object-oriented coding. Something that is very flexible is the way to add new levels. Essentially, I made a method called checkIfEnd() to see if the game should move on to the next level and, if so, calls another method that advances the game. In order to add a new level, you would simply have to add a new if statement to the method that advances the game and create a two new methods (setupGameLevel___ and createBrocksLevel____), both of which could be almost completely copied and pasted from the existing levels. The biggest issue with me for this project was time management, which is why my code ended up being so haphazard. If I had spent more time on this project, I believe I could have compartmentalized it in a way that took advantage of object oriented coding. Because my original code was essentially a long script I didn’t really have an ydependencies since everything was in one class. 
+	First feature: 
+	The paddle rotating 
+else if (code == KeyCode.UP && myPaddleImage.getRotate() < ROTATION_LIMIT) {
+			myPaddleCollisionSensor.setRotate(myPaddleCollisionSensor.getRotate()+ROTATING_FACTOR);
+			myPaddleImage.setRotate(myPaddleImage.getRotate()+ROTATING_FACTOR);
+		}
+		else if (code == KeyCode.DOWN && myPaddleImage.getRotate() > -ROTATION_LIMIT) {
+			myPaddleCollisionSensor.setRotate(myPaddleCollisionSensor.getRotate()-ROTATING_FACTOR);
+			myPaddleImage.setRotate(myPaddleImage.getRotate()-ROTATING_FACTOR);
+		}
+	The only classes I needed to implement these features were the ImageView and Rectangle class because I had to use their setRotate and getRotate methods. This was a fairly straightforward feature. Most of the aspects of my game were straightforward to code. I aimed for a more interesting cumulative experience instead of creating features that were very intricate by themselves. This feature is flexible in the sense that it relies on constants defined in the beginning of the code. Changing those would very quickly allow this feature to be tweaked. But, considering the nature of the feature itself, there isn’t much you can do with it besides tweaking the constants that govern it. 
+	Second feature:
+	if(blocks[row][cols].getHitsLeft() == 0){
+        			if(blocks[row][cols].getType() == 6){
+        				bouncerSpeedX = 0;
+        				bouncerSpeedY = maxBouncerSpeed;
+        			}
+        			if(blocks[row][cols].getType() == 7 && maxBouncerSpeed < UPPER_LIMIT_BOUNCER_SPEED){
+        				maxBouncerSpeed=maxBouncerSpeed-50;
+        			}
+        			if(blocks[row][cols].getType() == 8 && maxBouncerSpeed > LOWER_LIMIT_BOUNCER_SPEED){
+        				maxBouncerSpeed=maxBouncerSpeed+50;
+        			}
+        			if(blocks[row][cols].getType() == 9){
+        				firePower=true;
+        			}
+
+        			destroyed++;
+        			blocks[row][cols].setHitsLeft(-1);
+	This feature was also very straightforward to code. This piece of code represents the different things that occur when a certain type of block is broken. I didn’t have to access any extra classes to code this because all the things that happen have to do with the characteristics of the ball (such as having fire power, losing all horizontal momentum, e.t.c). This feature is flexible in the sense that you would just have to add another if statement if you wanted to add more types, but that would also require making changes in many other places in the code, so it actually isn’t that flexible.
+	Alternate Designs: 
+	One alternate design decision I wish I made while doing this program was breaking it up into more classes. The way I did my code, everything I needed to keep track of was a global field. This doesn’t properly represent the fact that certain concepts needed to be grouped together such as all the attributes of the ball or of the paddle. If I compartmentalized my code, it would be easier to understand the logic of. The choices I made would seem a lot less arbitrary. The pro of the choice I made, and the reason I actually did it, was because it saved time. It required less in-depth thinking to just code right of the bat. I would have preferred spending more time to plan out my code and break it up into classes.
+	Another alternate design decision I wish I made was using helper methods for collisions. I made helper methods to change the appropriate attributes after the collision, but I simply relied on the Shape class’ intersect method for my collisions. This required me to make invisible rectangles that followed around my image views to function as “collision detectors.” This feels inefficient and unnecessary. If I had created a helper method to deal with collisions I could have made my code a lot more readable and concise. The part of my code that checks for collisions seems very scrambled and random currently. It’s also so inflexible to the point that I couldn’t even fix it during refactoring. Changing how I did it would require me to rehash so many aspects of my code, so I decided it wouldn’t be worth the time to try and do that now, especially since the way I currently have it already works. 
+	The three biggest bugs that are still in my project have to do with the way collisions are done. If the ball hits two bricks exactly in between them, it’ll sometimes destroy at least two rows of the adjacent bricks. I think this is because the Y speed is reversed twice when the ball simultaneously hits two blocks, so it just keeps moving up. Another bug has to do with the ball hitting the wall. If it hits the wall in between two sections, sometimes the ball will get “stuck” in the wall and move straight down. I think this is because its X speed is continuously reversed so that it ends up not having any X speed at all. The last major bug in the project is that sometimes the ball does not bounce correctly when it has a horizontal collision. I don’t really have a great grasp on how coordinates work in JavaFX, so I tried simply checking if the ball was in between the top Y and bottom Y of the block it’s hitting. This works sometimes, but, for whatever reason, causes really weird behavior other times. These are all small bugs that don’t detract from the game as a whole, but they’re definitely noticeable if you play the game enough. I feel like if I did the collision sensing better, these could have been avoided. 
