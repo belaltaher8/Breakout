@@ -2,6 +2,8 @@
 ## Description
 In this project, I recreated the popular Breakout game. This rendition functions very similarly to the original except the user can rotate the paddle using the up and down arrow keys which adds a dimension to the gameplay. Depending on the block destroyed/color of the wall hit by the ball, the ball will undergo different changes in its speed/power.
 
+![Breakout Picture](https://raw.githubusercontent.com/belaltaher8/Breakout/master/BreakoutPic.PNG)
+
 
 ## Controls
 * Left arrow key -> move left
